@@ -1,0 +1,118 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Базовый класс
+class Gemstone {
+    private String name;
+    private double caratWeight;
+    private double pricePerCarat;
+
+    public Gemstone(String name, double caratWeight, double pricePerCarat) {
+        this.name = name;
+        this.caratWeight = caratWeight;
+        this.pricePerCarat = pricePerCarat;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getCaratWeight() {
+        return caratWeight;
+    }
+
+    public double getPricePerCarat() {
+        return pricePerCarat;
+    }
+
+    // Метод для расчета стоимости камня
+    public double calculatePrice() {
+        return caratWeight * pricePerCarat;
+    }
+}
+
+// Подклассы для драгоценных и полудрагоценных камней
+class PreciousStone extends Gemstone {
+    private String origin;
+
+    public PreciousStone(String name, double caratWeight, double pricePerCarat, String origin) {
+        super(name, caratWeight, pricePerCarat);
+        this.origin = origin;
+    }
+
+    // Геттер для получения информации о происхождении
+    public String getOrigin() {
+        return origin;
+    }
+}
+
+class SemiPreciousStone extends Gemstone {
+    private String color;
+
+    public SemiPreciousStone(String name, double caratWeight, double pricePerCarat, String color) {
+        super(name, caratWeight, pricePerCarat);
+        this.color = color;
+    }
+
+    // Геттер для получения информации о цвете
+    public String getColor() {
+        return color;
+    }
+}
+
+// Класс для управления созданием ожерелья
+class Necklace {
+    private List<Gemstone> stones = new ArrayList<>();
+
+    // Метод для добавления камня в ожерелье
+    public void addStone(Gemstone stone) {
+        stones.add(stone);
+    }
+
+    // Метод для расчета общего веса ожерелья
+    public double calculateTotalWeight() {
+        double totalWeight = 0;
+
+        // Суммируем вес каждого камня в ожерелье
+        for (Gemstone stone : stones) {
+            totalWeight += stone.getCaratWeight();
+        }
+
+        return totalWeight;
+    }
+
+    // Метод для расчета общей стоимости ожерелья
+    public double calculateTotalCost() {
+        double totalCost = 0;
+
+        // Суммируем стоимость каждого камня в ожерелье
+        for (Gemstone stone : stones) {
+            totalCost += stone.calculatePrice();
+        }
+
+        return totalCost;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Создание объектов драгоценных и полудрагоценных камней
+        PreciousStone diamond = new PreciousStone("Diamond", 1.5, 5000.0, "Africa");
+        SemiPreciousStone amethyst = new SemiPreciousStone("Amethyst", 2.0, 100.0, "Purple");
+
+        Necklace necklace = new Necklace();
+
+        // Добавление камней в ожерелье
+        necklace.addStone(diamond);
+        necklace.addStone(amethyst);
+
+        // Расчет общего веса и стоимости ожерелья
+        double totalWeight = necklace.calculateTotalWeight();
+        double totalCost = necklace.calculateTotalCost();
+
+        System.out.println("Total Necklace Weight: " + totalWeight + " carats");
+        System.out.println("Total Necklace Cost: $" + totalCost);
+    }
+}
+
+все заданий между собой очень схожие :)
