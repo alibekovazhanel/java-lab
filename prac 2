@@ -1,0 +1,37 @@
+
+class TrainComponent {
+    
+}
+class Locomotive extends TrainComponent {
+    
+}
+class PassengerWagon extends TrainComponent {
+    
+}
+class CargoWagon extends TrainComponent {
+ 
+}
+public class Train {
+    public static void main(String[] args) {
+        
+        Locomotive locomotive = new Locomotive();
+        PassengerWagon passengerWagon1 = new PassengerWagon();
+        PassengerWagon passengerWagon2 = new PassengerWagon();
+        CargoWagon cargoWagon1 = new CargoWagon();
+        CargoWagon cargoWagon2 = new CargoWagon();
+
+       
+        TrainComponent[] train = {locomotive, passengerWagon1, passengerWagon2, cargoWagon1, cargoWagon2};
+
+        
+        int totalCapacity = calculateTotalCapacity(train);
+        System.out.println("Total Capacity of the train: " + totalCapacity);
+    }
+public static int calculateTotalCapacity(TrainComponent[] train) {
+        int totalCapacity = 0;
+        for (TrainComponent component : train) {
+           
+        }
+        return totalCapacity;
+    }
+}
