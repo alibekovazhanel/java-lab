@@ -1,0 +1,64 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+// Класс ашамыз
+class Employee {
+    private int employeeId;
+    private String name;
+    private int age;
+
+    // былай айтқанда приваеваем
+    public Employee(int employeeId, String name, int age) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.age = age;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+// Иерархию создаем жұмысшылардың
+class EmployeeHierarchy {
+    private List<Employee> employees = new ArrayList<>();
+
+    // Сотрудник косамз
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    // Общий бағаны санау
+    public int calculateProjectCost() {
+     
+        return employees.size();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Екі обьект создаем
+        Employee employee1 = new Employee(1, "John", 25);
+        Employee employee2 = new Employee(2, "Alice", 30);
+
+        EmployeeHierarchy employeeHierarchy = new EmployeeHierarchy();
+
+       
+        employeeHierarchy.addEmployee(employee1);
+        employeeHierarchy.addEmployee(employee2);
+
+       
+        int projectCost = employeeHierarchy.calculateProjectCost();
+
+        System.out.println("Total Project Cost: " + projectCost);
+    }
+}
