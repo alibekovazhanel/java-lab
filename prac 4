@@ -1,0 +1,101 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Animal {
+    private String name;
+    private double price;
+
+    // присваеваем
+    public Animal(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // Геттеры для получения данных
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+// Подклассы для рыб и рептилий
+class Fish extends Animal {
+    private String waterType;
+
+    // Конструктор для инициализации объекта рыбы
+    public Fish(String name, double price, String waterType) {
+        super(name, price);
+        this.waterType = waterType;
+    }
+
+    public String getWaterType() {
+        return waterType;
+    }
+}
+
+class Reptile extends Animal {
+    private boolean isVenomous;
+
+    public Reptile(String name, double price, boolean isVenomous) {
+        super(name, price);
+        this.isVenomous = isVenomous;
+    }
+
+    // Геттер для получения информации о ядовитости
+    public boolean isVenomous() {
+        return isVenomous;
+    }
+}
+
+class Aquarium {
+    private List<Animal> inhabitants = new ArrayList<>();
+    private double accessoryCost;
+
+    // Метод для добавления животного в аквариум
+    public void addInhabitant(Animal animal) {
+        inhabitants.add(animal);
+    }
+
+    // Метод для добавления стоимости аксессуаров
+    public void addAccessoryCost(double cost) {
+        accessoryCost += cost;
+    }
+
+    // Метод для расчета общей стоимости аквариума
+    public double calculateTotalCost() {
+        double totalCost = accessoryCost;
+
+        // Считаем общую стоимость
+        for (Animal animal : inhabitants) {
+            totalCost += animal.getPrice();
+        }
+
+        return totalCost;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Создаем рыб и рептилий
+        Fish goldfish = new Fish("Goldfish", 10.0, "Freshwater");
+        Reptile snake = new Reptile("Snake", 20.0, true);
+
+        Aquarium aquarium = new Aquarium();
+
+        // Добавление животных в аквариум
+        aquarium.addInhabitant(goldfish);
+        aquarium.addInhabitant(snake);
+
+        // Добавление стоимости аксессуаров
+        aquarium.addAccessoryCost(5.0);
+
+        // Расчет общей стоимости аквариума
+        double totalCost = aquarium.calculateTotalCost();
+
+        // Вывод результата в консоль
+        System.out.println("Total Aquarium Cost: $" + totalCost);
+    }
+}
